@@ -76,4 +76,3 @@ MIT License — do whatever you want but don't sue me :)
 ---
 
 Made with ☕ by [Samm8g](https://github.com/samm8g)
-```
