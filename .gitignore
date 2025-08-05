@@ -1,0 +1,5 @@
+hbitlogs.db
+.idea/
+.venv/
+__pycache__/
+main.py
