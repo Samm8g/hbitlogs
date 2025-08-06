@@ -1,0 +1,58 @@
+/* style.css - Dark Theme */
+
+window {
+    background-color: #2e3436; /* Dark grey background */
+    color: #eeeeec; /* Light grey text */
+}
+
+headerbar {
+    background-color: #202224; /* Even darker header */
+    color: #eeeeec; /* Light grey text */
+}
+
+headerbar button {
+    color: #eeeeec; /* Light grey text for buttons in header */
+}
+
+listbox {
+    background-color: #343a40; /* Slightly lighter dark grey for listbox */
+    border: 1px solid #444; /* Darker border */
+    border-radius: 5px;
+}
+
+listbox row {
+    padding: 10px;
+    border-bottom: 1px solid #444; /* Darker separator */
+}
+
+listbox row:selected {
+    background-color: #4a5056; /* Darker selection color */
+}
+
+button {
+    padding: 8px 12px;
+    border-radius: 3px;
+    background-color: #007bff; /* A standard blue for buttons */
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004085;
+}
+
+/* Adjust dialogs for dark theme */
+.dialog-content-area {
+    background-color: #2e3436;
+    color: #eeeeec;
+}
+
+.dialog-content-area entry {
+    background-color: #343a40;
+    color: #eeeeec;
+    border: 1px solid #444;
+}

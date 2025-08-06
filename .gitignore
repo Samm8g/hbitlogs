@@ -3,3 +3,4 @@ hbitlogs.db
 .venv/
 __pycache__/
 main.py
+GEMINI.md

@@ -33,9 +33,9 @@ def add_hbit(name):
     with get_connection() as conn:
         try:
             conn.execute("INSERT INTO hbits (name, created) VALUES (?, ?)", (name, today))
-            print(f"✅ Added habit: {name}")
+            return "added"
         except sqlite3.IntegrityError:
-            print(f"⚠️ Habit already exists: {name}")
+            return "already_exists"
 
 def log_hbit(name):
     today = date.today().isoformat()
@@ -44,28 +44,20 @@ def log_hbit(name):
         c.execute("SELECT id FROM hbits WHERE name = ?", (name,))
         row = c.fetchone()
         if not row:
-            print(f"⚠️ Habit not found: {name}")
-            return
+            return "not_found"
         hbit_id = row[0]
         c.execute("SELECT id FROM logs WHERE hbit_id = ? AND date = ?", (hbit_id, today))
         if c.fetchone():
-            print(f"⏱️ Already logged today for: {name}")
-            return
+            return "already_logged"
         c.execute("INSERT INTO logs (hbit_id, date) VALUES (?, ?)", (hbit_id, today))
         conn.commit()
-        print(f"🗓️ Logged {name} for today!")
+        return "logged"
 
 def list_hbits():
     with get_connection() as conn:
         c = conn.cursor()
         c.execute("SELECT name, created FROM hbits ORDER BY name")
-        rows = c.fetchall()
-        if not rows:
-            print("📭 No habits yet. Add one with: add <name>")
-        else:
-            print("📋 Tracked habits:")
-            for name, created in rows:
-                print(f" - {name} (since {created})")
+        return c.fetchall()
 
 def show_stats(name):
     with get_connection() as conn:
@@ -73,14 +65,11 @@ def show_stats(name):
         c.execute("SELECT id FROM hbits WHERE name = ?", (name,))
         row = c.fetchone()
         if not row:
-            print(f"⚠️ Habit not found: {name}")
-            return
+            return None, None
         hbit_id = row[0]
         c.execute("SELECT COUNT(*), MAX(date) FROM logs WHERE hbit_id = ?", (hbit_id,))
         total, last = c.fetchone()
-        print(f"📊 Stats for '{name}':")
-        print(f" - Total logged: {total} times")
-        print(f" - Last entry : {last if last else 'Never'}")
+        return total, last
 
 def remove_hbit(name):
     with get_connection() as conn:
@@ -88,12 +77,11 @@ def remove_hbit(name):
         c.execute("SELECT id FROM hbits WHERE name = ?", (name,))
         row = c.fetchone()
         if not row:
-            print(f"⚠️ Habit not found: {name}")
-            return
+            return "not_found"
         hbit_id = row[0]
         # Delete logs first to avoid foreign key constraint
         c.execute("DELETE FROM logs WHERE hbit_id = ?", (hbit_id,))
         c.execute("DELETE FROM hbits WHERE id = ?", (hbit_id,))
         conn.commit()
-        print(f"❌ Removed habit: {name}")
+        return "removed"
 

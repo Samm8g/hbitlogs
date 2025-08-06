@@ -1,5 +1,9 @@
 # 🗓️ HBitLogs
 
+**⚠️ PROJECT FROZEN ⚠️**
+
+This repository is currently frozen until further notice due to ongoing technical challenges with the GTK 4 GUI implementation. Development will resume when these issues are resolved.
+
 **HBitLogs** is a simple offline CLI habit tracker built with Python and SQLite3.  
 Track your daily habits from the terminal — no network, no fluff.
 
@@ -11,6 +15,7 @@ Track your daily habits from the terminal — no network, no fluff.
 - List all tracked habits
 - Remove habits (with their logs)
 - All data stored locally in SQLite
+- **NEW: GTK 4 Graphical User Interface (GUI) with dark theme**
 
 ## 💻 Requirements
 
@@ -31,6 +36,8 @@ source .venv/bin/activate
 
 ## 🚀 Usage
 
+### CLI
+
 ```bash
 # Add a habit
 python hbitlogs.py add "Read book"
@@ -46,6 +53,15 @@ python hbitlogs.py stats "Read book"
 
 # Remove a habit
 python hbitlogs.py remove "Read book"
+```
+
+### GUI
+
+To run the GUI, you'll need to have the GTK 4 libraries installed. You can use the provided `shell.nix` file to create a suitable environment:
+
+```bash
+nix-shell
+python3 gui.py
 ```
 
 ## 🗃️ Data
