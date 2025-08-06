@@ -1,5 +1,9 @@
 # 🗓️ HBitLogs
 
+**⚠️ PROJECT FROZEN ⚠️**
+
+This repository is currently frozen until further notice due to ongoing technical challenges with the GTK 4 GUI implementation. Development will resume when these issues are resolved.
+
 **HBitLogs** is a simple offline CLI habit tracker built with Python and SQLite3.  
 Track your daily habits from the terminal — no network, no fluff.
 
